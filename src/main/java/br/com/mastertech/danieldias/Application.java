@@ -1,4 +1,4 @@
-package br.com.mastertech.danieldias.mastertech.danieldias;
+package br.com.mastertech.danieldias;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

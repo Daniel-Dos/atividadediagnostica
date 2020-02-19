@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.mastertech.danieldias.mastertech.repositorio.UsuarioRepositorio;
 import br.com.mastertech.danieldias.model.Usuario;
+import br.com.mastertech.danieldias.repositorio.UsuarioRepositorio;
 
 @RestController
 @RequestMapping("api/")

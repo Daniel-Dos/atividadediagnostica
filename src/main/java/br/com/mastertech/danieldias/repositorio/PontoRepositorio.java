@@ -1,4 +1,4 @@
-package br.com.mastertech.danieldias.mastertech.repositorio;
+package br.com.mastertech.danieldias.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

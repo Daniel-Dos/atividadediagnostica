@@ -1,4 +1,4 @@
-package br.com.mastertech.danieldias.mastertech.danieldias;
+package br.com.mastertech.danieldias;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
