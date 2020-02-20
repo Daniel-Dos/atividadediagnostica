@@ -27,10 +27,19 @@ public class UsuarioControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private String jsonVazio= "{}";
+    
     private String json = "  {\n" + 
             "        \n" + 
             "        \"nomeCompleto\": \"daniel\",\n" + 
+            "        \"cpf\": \"10\",\n" + 
+            "        \"email\": \"daniel@gmail.com\",\n" + 
+            "        \"dataCadastro\": \"2020-02-19\"\n" + 
+            "    }";
+    
+
+    private String jsonNovo = "  {\n" + 
+            "        \n" + 
+            "        \"nomeCompleto\": \"danielSantos\",\n" + 
             "        \"cpf\": \"10\",\n" + 
             "        \"email\": \"daniel@gmail.com\",\n" + 
             "        \"dataCadastro\": \"2020-02-19\"\n" + 
@@ -76,45 +85,25 @@ public class UsuarioControllerTest {
     @Test
     public void deveRetornarConteudoNaLista() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
+       /* mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andDo(print());
+                .andDo(print());*/
         
        mvc.perform(MockMvcRequestBuilders.get("/api/usuarios")
                                          .accept(MediaType.APPLICATION_JSON))
                                          .andDo(print())
                                          .andExpect(status().isOk())
-                                         .andExpect(jsonPath("$.*",hasSize(3)));
+                                         .andExpect(jsonPath("$.*",hasSize(1)));
                 
     }
-    
-    @Test
-    public void deveRetornarUmUsuarioPorId() throws Exception {
-        
-        mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
-                .content(json)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print());
-        
-        mvc.perform(MockMvcRequestBuilders.get("/api/usuarios/{id}",1)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nomeCompleto",is("danielDias")))
-                .andExpect(jsonPath("$.cpf",is("11")))
-                .andExpect(jsonPath("$.email",is("daniel@gmail.com")))
-                .andExpect(jsonPath("$.dataCadastro",is("2020-02-19")));
-    }
-    
    
     @Test
     public void atualizaUsuario() throws Exception {
         
         mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
-                .content(json)
+                .content(jsonNovo)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
@@ -130,4 +119,18 @@ public class UsuarioControllerTest {
                 .andExpect(jsonPath("$.email",is("daniel@gmail.com")))
                 .andExpect(jsonPath("$.dataCadastro",is("2020-02-19")));
     }
+    
+    @Test
+    public void deveRetornarUmUsuarioPorId() throws Exception {
+        
+        mvc.perform(MockMvcRequestBuilders.get("/api/usuarios/{id}",1)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nomeCompleto",is("danielDias")))
+                .andExpect(jsonPath("$.cpf",is("11")))
+                .andExpect(jsonPath("$.email",is("daniel@gmail.com")))
+                .andExpect(jsonPath("$.dataCadastro",is("2020-02-19")));
+    }
+    
 }
