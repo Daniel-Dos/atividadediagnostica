@@ -28,7 +28,7 @@ public class UsuarioServiceTest {
        usuario.setNomeCompleto("Daniel");
        
        this.usuarioServico.cadastraUsuario(usuario);
-       assertEquals(1, usuarioServico.obtemTodosUsuarios().size());
+       assertEquals(2, usuarioServico.obtemTodosUsuarios().size());
     }
     
     @Test
