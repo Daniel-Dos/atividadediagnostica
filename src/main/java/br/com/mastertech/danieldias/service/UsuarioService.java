@@ -1,6 +1,7 @@
 package br.com.mastertech.danieldias.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,6 @@ public interface UsuarioService {
 
     void cadastraUsuario(Usuario usuario);
     List<Usuario> obtemTodosUsuarios();
-    Usuario obtemUsuario(int id);
+    Optional<Usuario> obtemUsuario(int id);
     void atualizaUsuario(Usuario usuario);
 }

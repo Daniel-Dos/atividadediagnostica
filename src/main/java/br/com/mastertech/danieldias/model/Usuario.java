@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario {
@@ -14,12 +15,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String nomeCompleto;
-    private int cpf;
-    private String email;
-    private LocalDate dataCadastro;
+    @NotNull private String nomeCompleto;
+    @NotNull private String cpf;
+    @NotNull private String email;
+    @NotNull private LocalDate dataCadastro;
 
-    public Usuario(int id, String nomeCompleto, int cpf, String email, LocalDate dataCadastro) {
+    public Usuario(int id, String nomeCompleto, String cpf, String email, LocalDate dataCadastro) {
         super();
         this.id = id;
         this.nomeCompleto = nomeCompleto;
@@ -46,11 +47,11 @@ public class Usuario {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -68,5 +69,11 @@ public class Usuario {
 
     public void setData(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nomeCompleto=" + nomeCompleto + ", cpf=" + cpf + ", email=" + email
+                + ", dataCadastro=" + dataCadastro + "]";
     }
 }

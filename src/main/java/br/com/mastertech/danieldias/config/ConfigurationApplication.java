@@ -1,4 +1,4 @@
-package br.com.mastertech.danieldias;
+package br.com.mastertech.danieldias.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import br.com.mastertech.danieldias.service.impl.PontoServiceImpl;
 import br.com.mastertech.danieldias.service.impl.UsuarioServiceImpl;
 
 @Configuration
-public class ConfigurarionApplication {
+public class ConfigurationApplication {
 
     @Bean
     public PontoService pontoServiceBean() {

@@ -1,6 +1,7 @@
 package br.com.mastertech.danieldias.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,12 +25,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario obtemUsuario(int id) {
-        return null;
+    public Optional<Usuario> obtemUsuario(int id) {
+        return this.usuarioRepositorio.findById(id) ;
     }
 
     @Override
     public void atualizaUsuario(Usuario usuario) {
-    
+        Optional<Usuario> oldUsuario= obtemUsuario(usuario.getId());
+        Usuario usuarioNovo = new Usuario();
+        usuarioNovo.setNomeCompleto(usuario.getNomeCompleto());
+        usuarioNovo.setEmail(usuario.getEmail());
+        usuarioNovo.setData(oldUsuario.get().getDataCadastro());
+        usuarioNovo.setCpf(usuario.getCpf());
+        usuarioNovo.setId(oldUsuario.get().getId());
+        this.usuarioRepositorio.save(usuarioNovo);
+        
     }
 }
