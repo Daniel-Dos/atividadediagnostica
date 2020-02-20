@@ -1,6 +1,5 @@
 package br.com.mastertech.danieldias.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.mastertech.danieldias.model.Mensagem;
 import br.com.mastertech.danieldias.model.Usuario;
 import br.com.mastertech.danieldias.service.UsuarioService;
 
@@ -33,16 +31,15 @@ public class UsuarioController {
     }
 
     @PostMapping("usuarios")
-    public ResponseEntity<Mensagem> cadastraUsuarios(@RequestBody @Valid Usuario usuario) {
+    public ResponseEntity<Usuario> cadastraUsuarios(@RequestBody @Valid Usuario usuario) {
         this.usuarioService.cadastraUsuario(usuario);
-        return new ResponseEntity<Mensagem>(new Mensagem(usuario.getNomeCompleto() + " Cadastrado com Sucesso"),
-                HttpStatus.CREATED);
+        return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
     }
     
     @PutMapping("usuarios")
-    public ResponseEntity<Mensagem> atualizaUsuarios(@RequestBody @Valid Usuario usuario) {
+    public ResponseEntity<Usuario> atualizaUsuarios(@RequestBody @Valid Usuario usuario) {
         this.usuarioService.atualizaUsuario(usuario);
-        return new ResponseEntity<Mensagem>(new Mensagem(usuario.getNomeCompleto() + " Atualizado com Sucesso"), HttpStatus.OK);
+        return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
     }
 
     @GetMapping("usuarios/{id}")

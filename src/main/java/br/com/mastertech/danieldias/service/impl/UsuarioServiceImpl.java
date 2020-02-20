@@ -15,8 +15,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Override
-    public void cadastraUsuario(Usuario usuario) {
-       this.usuarioRepositorio.save(usuario);
+    public Usuario cadastraUsuario(Usuario usuario) {
+       Usuario save = this.usuarioRepositorio.save(usuario);
+       return save;
     }
 
     @Override

@@ -10,7 +10,7 @@ import br.com.mastertech.danieldias.model.Usuario;
 @Service
 public interface UsuarioService {
 
-    void cadastraUsuario(Usuario usuario);
+    Usuario cadastraUsuario(Usuario usuario);
     List<Usuario> obtemTodosUsuarios();
     Optional<Usuario> obtemUsuario(int id);
     void atualizaUsuario(Usuario usuario);

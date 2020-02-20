@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.mastertech.danieldias.model.Mensagem;
 import br.com.mastertech.danieldias.model.Ponto;
 import br.com.mastertech.danieldias.service.PontoService;
 
@@ -23,9 +22,9 @@ public class PontoController {
     private PontoService pontoService;
 
     @PostMapping("ponto")
-    public ResponseEntity<Mensagem> resgistrarPonto(@RequestBody Ponto ponto) {
+    public ResponseEntity<Ponto> resgistrarPonto(@RequestBody Ponto ponto) {
         this.pontoService.cadastraPonto(ponto);
-        return new ResponseEntity<Mensagem>(new Mensagem(ponto.getUsuario().getNomeCompleto() + " Registrado com Sucesso"), HttpStatus.CREATED);
+        return new ResponseEntity<Ponto>(ponto, HttpStatus.CREATED);
     }
     
     @GetMapping("ponto")
