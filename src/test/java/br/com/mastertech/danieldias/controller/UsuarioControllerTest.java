@@ -84,12 +84,6 @@ public class UsuarioControllerTest {
     
     @Test
     public void deveRetornarConteudoNaLista() throws Exception {
-
-       /* mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
-                .content(json)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print());*/
         
        mvc.perform(MockMvcRequestBuilders.get("/api/usuarios")
                                          .accept(MediaType.APPLICATION_JSON))

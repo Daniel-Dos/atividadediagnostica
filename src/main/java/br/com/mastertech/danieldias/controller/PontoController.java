@@ -29,6 +29,6 @@ public class PontoController {
     
     @GetMapping("ponto")
     public ResponseEntity<List<Ponto>> obtemPonto() {
-        return new ResponseEntity<List<Ponto>>(pontoService.obtemPonto(), HttpStatus.CREATED);
+        return new ResponseEntity<List<Ponto>>(pontoService.obtemPonto(), HttpStatus.OK);
     }
 }
