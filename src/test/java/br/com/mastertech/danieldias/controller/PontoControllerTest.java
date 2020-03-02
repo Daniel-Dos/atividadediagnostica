@@ -23,14 +23,6 @@ public class PontoControllerTest {
 
     @Autowired
     private MockMvc mvc;
-
-    private String json = "  {\n" + 
-            "        \n" + 
-            "        \"nomeCompleto\": \"daniel\",\n" + 
-            "        \"cpf\": \"10\",\n" + 
-            "        \"email\": \"daniel@gmail.com\",\n" + 
-            "        \"dataCadastro\": \"2020-02-19\"\n" + 
-            "    }";
     
     private String jsonPonto = "{\n" + 
             "        \"usuario\":{\n" + 
@@ -43,27 +35,15 @@ public class PontoControllerTest {
     @Test
     public void registraPonto() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
-                .content(json)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.nomeCompleto",is("daniel")))
-                .andExpect(jsonPath("$.cpf",is("10")))
-                .andExpect(jsonPath("$.email",is("daniel@gmail.com")))
-                .andExpect(jsonPath("$.dataCadastro",is("2020-02-19")));
-        
         mvc.perform(MockMvcRequestBuilders.post("/api/ponto")
                 .content(jsonPonto)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                
                 .andExpect(jsonPath("$['usuario'].['id']",is(1)))
-                .andExpect(jsonPath("$['usuario'].['nomeCompleto']",is("daniel")))
-                .andExpect(jsonPath("$['usuario'].['cpf']",is("10")))
+                .andExpect(jsonPath("$['usuario'].['nomeCompleto']",is("danielDias")))
+                .andExpect(jsonPath("$['usuario'].['cpf']",is("11")))
                 .andExpect(jsonPath("$['usuario'].['email']",is("daniel@gmail.com")))
                 .andExpect(jsonPath("$['usuario'].['dataCadastro']",is("2020-02-19")))
                 .andExpect(jsonPath("tipoBatida",is("ENTRADA")))
@@ -72,16 +52,6 @@ public class PontoControllerTest {
     
     @Test
     public void deveRetornarConteudoNaLista() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
-                .content(json)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.nomeCompleto",is("daniel")))
-                .andExpect(jsonPath("$.cpf",is("10")))
-                .andExpect(jsonPath("$.email",is("daniel@gmail.com")))
-                .andExpect(jsonPath("$.dataCadastro",is("2020-02-19")));
         
         mvc.perform(MockMvcRequestBuilders.post("/api/ponto")
                 .content(jsonPonto)
@@ -91,19 +61,17 @@ public class PontoControllerTest {
                 .andExpect(status().isCreated())
                 
                 .andExpect(jsonPath("$['usuario'].['id']",is(1)))
-                .andExpect(jsonPath("$['usuario'].['nomeCompleto']",is("daniel")))
-                .andExpect(jsonPath("$['usuario'].['cpf']",is("10")))
+                .andExpect(jsonPath("$['usuario'].['nomeCompleto']",is("danielDias")))
+                .andExpect(jsonPath("$['usuario'].['cpf']",is("11")))
                 .andExpect(jsonPath("$['usuario'].['email']",is("daniel@gmail.com")))
                 .andExpect(jsonPath("$['usuario'].['dataCadastro']",is("2020-02-19")))
                 .andExpect(jsonPath("tipoBatida",is("ENTRADA")))
                 .andExpect(jsonPath("dataHoraBatida",is("2020-02-19 21:46:04")));
-        
-        
+
        mvc.perform(MockMvcRequestBuilders.get("/api/ponto")
                                          .accept(MediaType.APPLICATION_JSON))
                                          .andDo(print())
                                          .andExpect(status().isOk())
-                                         .andExpect(jsonPath("$.*",hasSize(1)));
-                
+                                         .andExpect(jsonPath("$.*",hasSize(1)));               
     }
 }
